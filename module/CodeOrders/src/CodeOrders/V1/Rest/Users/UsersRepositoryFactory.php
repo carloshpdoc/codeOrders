@@ -25,7 +25,7 @@ class UsersRepositoryFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $dbAdapter = $serviceLocator->get('DbApapter');
+        $dbAdapter = $serviceLocator->get('DbAdapter');
         $usersMapper = new UsersMapper();
         $hydrator = new HydratingResultSet($usersMapper, new UsersEntity());
 
