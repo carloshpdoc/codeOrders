@@ -25,7 +25,7 @@ class UsersResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        return $this->repository->createPost($data);
     }
 
     /**
@@ -58,7 +58,7 @@ class UsersResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
+        return $this->repository->find($id);
     }
 
     /**

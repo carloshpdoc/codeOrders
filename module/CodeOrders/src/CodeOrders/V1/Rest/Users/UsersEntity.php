@@ -1,7 +1,9 @@
 <?php
 namespace CodeOrders\V1\Rest\Users;
 
-class UsersEntity
+use Zend\Stdlib\Hydrator\HydratorInterface;
+
+class UsersEntity //implements HydratorInterface
 {
     protected $id;
     protected $username;
@@ -10,21 +12,58 @@ class UsersEntity
     protected $last_name;
     protected $role;
 
+
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getId()
     {
-        return $this->role;
+        return $this->id;
     }
 
     /**
-     * @param mixed $role
+     * @param mixed $id
      * @return UsersEntity
      */
-    public function setRole($role)
+    public function setId($id)
     {
-        $this->role = $role;
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     * @return UsersEntity
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     * @return UsersEntity
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
         return $this;
     }
 
@@ -67,56 +106,53 @@ class UsersEntity
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getRole()
     {
-        return $this->password;
+        return $this->role;
     }
 
     /**
-     * @param mixed $password
+     * @param mixed $role
      * @return UsersEntity
      */
-    public function setPassword($password)
+    public function setRole($role)
     {
-        $this->password = $password;
+        $this->role = $role;
         return $this;
     }
 
+/*
     /**
-     * @return mixed
+     * Extract values from an object
+     *
+     * @param  object $object
+     * @return array
      */
-    public function getUsername()
+  /*  public function extract($object)
     {
-        return $this->username;
-    }
-
-    /**
-     * @param mixed $username
-     * @return UsersEntity
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+        return[
+            'id'=> $this->id,
+            'username'=>$this->username,
+            'password'=>$this->password,
+            'first_name'=>$this->first_name,
+            'last_name'=>$this->last_name
+        ];
+    }*/
 
     /**
-     * @param mixed $id
-     * @return UsersEntity
+     * Hydrate $object with the provided $data.
+     *
+     * @param  array $data
+     * @param  object $object
+     * @return object
      */
-    public function setId($id)
+   /* public function hydrate(array $data, $object)
     {
-        $this->id = $id;
-        return $this;
-    }
-
-
+        $object->id = $data['id'];
+        $object->username =$data['username'];
+        $object->password = $data['password'];
+        $object->first_name = $data['first_name'];
+        $object->last_name = $data['last_name'];
+        return $object;
+    }*/
 }
