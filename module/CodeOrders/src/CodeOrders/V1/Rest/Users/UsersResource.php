@@ -25,7 +25,7 @@ class UsersResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return $this->repository->createPost($data);
+        $this->repository->createPost($data);
     }
 
     /**
