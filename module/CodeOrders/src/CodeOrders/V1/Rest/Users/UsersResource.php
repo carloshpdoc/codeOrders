@@ -36,7 +36,8 @@ class UsersResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
+       return $this ->repository->deleteData($id);
+        //return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
     }
 
     /**
@@ -103,7 +104,9 @@ class UsersResource extends AbstractResourceListener
      * @return ApiProblem|mixed
      */
     public function update($id, $data)
-    {
-        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+    {/*echo gettype($data);
+        exit;*/
+        $this->repository->updateData($id, $data);
+        //return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
 }
