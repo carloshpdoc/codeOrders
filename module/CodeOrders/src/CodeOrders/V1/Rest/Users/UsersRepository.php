@@ -67,7 +67,7 @@ class UsersRepository
 
     public function updateData($id,$data)
     {
-        $this->tableGateway->update((array)$data, ['id'=>(int)$id]);
+        $this->tableGateway->update((array)$data, ["id"=>(int)$id]);
         return $this->find($id);
     }
 

@@ -104,8 +104,7 @@ class UsersResource extends AbstractResourceListener
      * @return ApiProblem|mixed
      */
     public function update($id, $data)
-    {/*echo gettype($data);
-        exit;*/
+    {
         $this->repository->updateData($id, $data);
         //return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
