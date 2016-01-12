@@ -30,7 +30,7 @@ class OrderItemTableGatewayFactory implements FactoryInterface
 
        $hydrator = new HydratingResultSet(new ClassMethods(), new OrderItemEntity());
 
-       $tableGateway = new TableGateway('order_item', $dbAdapter, null, $hydrator);
+       $tableGateway = new TableGateway('order_items', $dbAdapter, null, $hydrator);
 
        return $tableGateway;
     }
