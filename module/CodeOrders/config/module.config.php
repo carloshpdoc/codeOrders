@@ -283,7 +283,7 @@ return array(
                 'entity_identifier_name' => 'id',
                 'route_name' => 'code-orders.rest.orders',
                 'route_identifier_name' => 'orders_id',
-                'hydrator' => 'Zend\\Stdlib\\Hydrator\\ArraySerializable',
+                'hydrator' => 'Zend\\Stdlib\\Hydrator\\ClassMethods',
             ),
             'CodeOrders\\V1\\Rest\\Orders\\OrdersCollection' => array(
                 'entity_identifier_name' => 'id',

@@ -69,7 +69,10 @@ class OrdersResource extends AbstractResourceListener
      */
     public function fetchAll($params = array())
     {
-        return new ApiProblem(405, 'The GET method has not been defined for collections');
+
+        return $this->repository->findAll();
+
+        //return new ApiProblem(405, 'The GET method has not been defined for collections');
     }
 
     /**
