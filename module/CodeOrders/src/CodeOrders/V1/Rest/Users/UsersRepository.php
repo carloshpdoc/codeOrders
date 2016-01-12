@@ -42,7 +42,11 @@ class UsersRepository
 
       return $resultSet->current();
     }
-
+	
+	public function findByUsername($username)
+    {
+		return $this->tableGateway->select(['username'=>$username])->current();
+    }
 
     public function createPost($data)
     {

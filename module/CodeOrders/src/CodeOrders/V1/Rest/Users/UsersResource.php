@@ -59,6 +59,12 @@ class UsersResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
+        $user = $this->repository->findByUsername($this->getIdentity()->getRoleId());
+
+        if($user->getRole()=="admin"){
+            return new ApiProblem(403,'Access not for salesman');
+        }
+
         return $this->repository->find($id);
     }
 
