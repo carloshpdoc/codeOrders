@@ -32,6 +32,7 @@ class OrdersRepository
     public function  findAll()
     {
         $hydrator = new ClassMethods();
+        $hydrator->addStrategy('items', new OrderItemHydratorStrategy(new ClassMethods()));
 
         $orders= $this->tableGateway->select();
         $res=[];
