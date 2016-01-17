@@ -57,11 +57,23 @@ class OrdersRepository
 
     }
 
-    public function insert($data)
+    public function insert( array $data)
     {
-        $hydrator = new ObjectProperty();
-        $data = $hydrator->extract($data);
+        $this->tableGateway->insert($data);
+        $id= $this->tableGateway->getLastInsertValue();
 
-        return $this->tableGateway->insert($data);
+        return $id;
+    }
+
+    public function insertItem(array $data)
+    {
+        $this->orderItemTableGateway->insert($data);
+
+        return $this->orderItemTableGateway->getLastInsertValue();
+    }
+
+    public function getTableGateway()
+    {
+        return $this->tableGateway;
     }
 }

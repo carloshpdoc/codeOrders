@@ -30,9 +30,13 @@ class OrdersResource extends AbstractResourceListener
      */
     public function create($data)
     {
-     return $this->services->insert($data);
+        $result = $this->services->insert($data);
 
-        //return new ApiProblem(405, 'The POST method has not been defined');
+        if($result=="error"){
+            return new ApiProblem(405, 'Error processing order');
+        }
+
+        return $result;
     }
 
     /**
