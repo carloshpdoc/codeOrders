@@ -1,6 +1,7 @@
 <?php
 namespace CodeOrders\V1\Rest\Products;
 
+use Zend\Stdlib\Hydrator\ObjectProperty;
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
 
@@ -20,7 +21,16 @@ class ProductsResource extends AbstractResourceListener
      */
     public function create($data)
     {
-        return new ApiProblem(405, 'The POST method has not been defined');
+        $hydrator = new ObjectProperty();
+        $data = $hydrator->extract($data);
+
+        $result = $this->repository->createData($data);
+
+        if($result=="error"){
+            return new ApiProblem(500, 'Error processing insert Products');
+        }
+
+        return $result;
     }
 
     /**
