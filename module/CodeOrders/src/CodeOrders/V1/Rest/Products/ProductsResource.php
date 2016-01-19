@@ -109,6 +109,13 @@ class ProductsResource extends AbstractResourceListener
      */
     public function update($id, $data)
     {
-        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+        $result =  $this->repository->updateData($id, $data);
+
+        if($result=="error"){
+            return new ApiProblem(500, 'Error updating products');
+        }
+
+        return $result;
+       /// return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
 }

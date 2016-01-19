@@ -10,6 +10,7 @@ namespace CodeOrders\V1\Rest\Products;
 
 use Zend\Db\TableGateway\AbstractTableGateway;
 use Zend\Paginator\Adapter\DbTableGateway;
+use ZF\ApiProblem\ApiProblem;
 
 class ProductsRepository
 {
@@ -55,5 +56,40 @@ class ProductsRepository
 
             return 'error';
         }
+    }
+
+    /**
+     * @param $id
+     * @return bool|ApiProblem
+     * Regra de Negócio
+     */
+   /* public function deleteData($id)
+    {
+        $result = $this->find($id);
+        if(!$result)
+        {
+            return new ApiProblem(404,'Registro não encontrado');
+        }
+
+        $this->tableGateway->delete(['id'=>(int)$id]);
+        return true;
+    }*/
+
+    public function updateData($id,$data)
+    {
+        try {
+
+            $this->tableGateway->getAdapter()->getDriver()->getConnection()->beginTransaction();
+
+            $this->tableGateway->update((array)$data, ["id"=>(int)$id]);
+
+            $this->tableGateway->getAdapter()->getDriver()->getConnection()->commit();
+
+            return $this->find($id);
+        } catch (\Exception $e) {
+                $this->tableGateway->getAdapter()->getDriver()->getConnection()->rollback();
+
+                return 'error';
+         }
     }
 }
