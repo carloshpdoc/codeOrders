@@ -76,7 +76,21 @@ class OrdersResource extends AbstractResourceListener
      */
     public function fetch($id)
     {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
+        $userRole = $this->repository->findByUsername($this->getIdentity()->getRoleId());
+
+        if($userRole!="salesman"){
+            return new ApiProblem(403,'Access only for salesman. You role is : '.$userRole);
+        }
+
+        $r = $this->repository->find($id,$this->getIdentity()->getRoleId());
+
+        if($r==false){
+            return new ApiProblem(403,'You can only see their own requests');
+        }
+
+        return $r;
+
+        //return new ApiProblem(405, 'The GET method has not been defined for individual resources');
     }
 
     /**

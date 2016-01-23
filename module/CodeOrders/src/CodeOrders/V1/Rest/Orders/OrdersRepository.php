@@ -88,4 +88,29 @@ class OrdersRepository
 
         return $user->getRole();
     }
+
+   /* public function findById($username)
+    {*/
+    /*    $user = $this->UserRoleTableGateway->select(['username'=>$username])->current();
+
+        return $user->getId();*/
+    //}
+
+    public function find($id, $name)
+    {
+        $resultSet = $this->tableGateway->select(['id'=>$id])->current();
+
+        $user = $this->UserRoleTableGateway->select(['username'=>$name])->current();
+
+        $id = $user->getId();
+
+        $idUser = $resultSet->getUserId();
+
+
+        if($id==$idUser){
+            return $resultSet;
+        }else{
+            return false;
+        }
+    }
 }
