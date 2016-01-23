@@ -41,7 +41,7 @@ class ProductsResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
+        return new ApiProblem(505, 'Não e possivel deletar um produto, melhor seria desabilitar?');
     }
 
     /**
