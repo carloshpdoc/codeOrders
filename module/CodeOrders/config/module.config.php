@@ -541,6 +541,7 @@ return array(
             'CodeOrders\\V1\\Rest\\Orders\\OrderItemTableGateway' => 'CodeOrders\\V1\\Rest\\Orders\\OrderItemTableGatewayFactory',
             'CodeOrders\\V1\\Rest\\Orders\\OrdersRepository' => 'CodeOrders\\V1\\Rest\\Orders\\OrdersRepositoryFactory',
             'CodeOrders\\V1\\Rest\\Orders\\OrdersServices' => 'CodeOrders\\V1\\Rest\\Orders\\OrdersServiceFactory',
+            'CodeOrders\\V1\\Rest\\Orders\\UserRoleTableGateway' => 'CodeOrders\\V1\\Rest\\Orders\\UserRoleTableGatewayFactory',
         ),
     ),
     'zf-mvc-auth' => array(

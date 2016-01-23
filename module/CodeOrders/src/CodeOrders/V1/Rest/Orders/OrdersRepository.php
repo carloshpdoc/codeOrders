@@ -24,11 +24,16 @@ class OrdersRepository
      * @var AbstractTableGateway
      */
     private $orderItemTableGateway;
+    /**
+     * @var AbstractTableGateway
+     */
+    private $UserRoleTableGateway;
 
-    public function __construct(AbstractTableGateway $tableGateway, AbstractTableGateway $orderItemTableGateway)
+    public function __construct(AbstractTableGateway $tableGateway, AbstractTableGateway $orderItemTableGateway, AbstractTableGateway $UserRoleTableGateway)
     {
         $this->tableGateway = $tableGateway;
         $this->orderItemTableGateway = $orderItemTableGateway;
+        $this->UserRoleTableGateway = $UserRoleTableGateway;
     }
 
     public function  findAll()
@@ -75,5 +80,12 @@ class OrdersRepository
     public function getTableGateway()
     {
         return $this->tableGateway;
+    }
+
+    public function findByUsername($username)
+    {
+        $user = $this->UserRoleTableGateway->select(['username'=>$username])->current();
+
+        return $user->getRole();
     }
 }

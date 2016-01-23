@@ -30,6 +30,13 @@ class OrdersResource extends AbstractResourceListener
      */
     public function create($data)
     {
+        $userRole = $this->repository->findByUsername($this->getIdentity()->getRoleId());
+
+        if($userRole!="salesman"){
+            return new ApiProblem(403,'Access only for salesman. You role is : '.$userRole);
+        }
+
+
         $result = $this->services->insert($data);
 
         if($result=="error"){
