@@ -27,15 +27,13 @@ class ProductsRepositoryFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $dbAdapter = $serviceLocator->get('DbAdapter');
-        //  $usersMapper = new UsersMapper();
-        //  $hydrator = new HydratingResultSet($usersMapper, new UsersEntity());
+
         $hydrator = new HydratingResultSet(new ClassMethods(), new ProductsEntity());
 
         $tableGateway = new TableGateway('products', $dbAdapter, null, $hydrator);
 
-     //   $productsRepository = new ProductsRepository($tableGateway);
 
-        $roleTableGateway = $serviceLocator->get('CodeOrders\V1\Rest\Orders\RoleTableGateway');
+        $roleTableGateway = $serviceLocator->get('CodeOrderS\V1\Rest\Products\RoleTableGateway');
 
         return new ProductsRepository($tableGateway, $roleTableGateway);
     }
