@@ -21,6 +21,13 @@ class ProductsResource extends AbstractResourceListener
      */
     public function create($data)
     {
+        $userRole = $this->repository->findByUsername($this->getIdentity()->getRoleId());
+
+        if($userRole!="admin")
+        {
+            return new ApiProblem(403, 'You are not an admin. Your are an :'.$userRole);
+        }
+
         $hydrator = new ObjectProperty();
         $data = $hydrator->extract($data);
 
@@ -41,7 +48,7 @@ class ProductsResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(505, 'Não e possivel deletar um produto, melhor seria desabilitar?');
+        return new ApiProblem(500, 'Não e possivel deletar um produto, melhor seria desabilitar?');
     }
 
     /**
@@ -109,6 +116,14 @@ class ProductsResource extends AbstractResourceListener
      */
     public function update($id, $data)
     {
+
+        $userRole = $this->repository->findByUsername($this->getIdentity()->getRoleId());
+
+        if($userRole!="admin")
+        {
+            return new ApiProblem(403, 'You are not an admin. Your are an :'.$userRole);
+        }
+
         $result =  $this->repository->updateData($id, $data);
 
         if($result=="error"){

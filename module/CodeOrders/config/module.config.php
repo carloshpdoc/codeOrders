@@ -537,6 +537,7 @@ return array(
             'CodeOrders\\V1\\Rest\\Users\\UsersRepository' => 'CodeOrders\\V1\\Rest\\Users\\UsersRepositoryFactory',
             'CodeOrders\\V1\\Rest\\Products\\ProductsResource' => 'CodeOrders\\V1\\Rest\\Products\\ProductsResourceFactory',
             'CodeOrders\\V1\\Rest\\Products\\ProductsRepository' => 'CodeOrders\\V1\\Rest\\Products\\ProductsRepositoryFactory',
+            'CodeOrders\\V1\\Rest\\Orders\\RoleTableGateway' => 'CodeOrders\\V1\\Rest\\Products\\RoleTableGatewayFactory',
             'CodeOrders\\V1\\Rest\\Orders\\OrdersResource' => 'CodeOrders\\V1\\Rest\\Orders\\OrdersResourceFactory',
             'CodeOrders\\V1\\Rest\\Orders\\OrderItemTableGateway' => 'CodeOrders\\V1\\Rest\\Orders\\OrderItemTableGatewayFactory',
             'CodeOrders\\V1\\Rest\\Orders\\OrdersRepository' => 'CodeOrders\\V1\\Rest\\Orders\\OrdersRepositoryFactory',
@@ -556,6 +557,38 @@ return array(
                 ),
                 'entity' => array(
                     'GET' => false,
+                    'POST' => false,
+                    'PUT' => true,
+                    'PATCH' => true,
+                    'DELETE' => true,
+                ),
+            ),
+            'CodeOrders\\V1\\Rest\\Clients\\Controller' => array(
+                'collection' => array(
+                    'GET' => true,
+                    'POST' => true,
+                    'PUT' => false,
+                    'PATCH' => false,
+                    'DELETE' => false,
+                ),
+                'entity' => array(
+                    'GET' => false,
+                    'POST' => false,
+                    'PUT' => true,
+                    'PATCH' => true,
+                    'DELETE' => true,
+                ),
+            ),
+            'CodeOrders\\V1\\Rest\\Products\\Controller' => array(
+                'collection' => array(
+                    'GET' => true,
+                    'POST' => true,
+                    'PUT' => false,
+                    'PATCH' => false,
+                    'DELETE' => false,
+                ),
+                'entity' => array(
+                    'GET' => true,
                     'POST' => false,
                     'PUT' => true,
                     'PATCH' => true,

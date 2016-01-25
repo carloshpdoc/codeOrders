@@ -61,7 +61,7 @@ class UsersResource extends AbstractResourceListener
     {
         $user = $this->repository->findByUsername($this->getIdentity()->getRoleId());
 
-        if($user->getRole()=="salesman"){
+        if($user=="salesman"){
             return new ApiProblem(403,'Access not for salesman');
         }
 

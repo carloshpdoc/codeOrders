@@ -98,7 +98,23 @@ class OrdersRepository
 
     public function find($id, $name)
     {
+        $hydrator = new ClassMethods();
+        $hydrator->addStrategy('items', new OrderItemHydratorStrategy(new ClassMethods()));
+
         $resultSet = $this->tableGateway->select(['id'=>$id])->current();
+        $res=[];
+
+            $items = $this->orderItemTableGateway->select(['order_id'=>$resultSet->getId()]);
+
+            foreach($items as $item){
+                $resultSet->addItems($item);
+            }
+
+            $data = $hydrator->extract($resultSet);
+            $res[] = $data;
+
+        $arrayAdapter = new ArrayAdapter($res);
+        $ordersCollection = new OrdersCollection($arrayAdapter);
 
         $user = $this->UserRoleTableGateway->select(['username'=>$name])->current();
 
@@ -106,9 +122,8 @@ class OrdersRepository
 
         $idUser = $resultSet->getUserId();
 
-
         if($id==$idUser){
-            return $resultSet;
+            return $ordersCollection;
         }else{
             return false;
         }

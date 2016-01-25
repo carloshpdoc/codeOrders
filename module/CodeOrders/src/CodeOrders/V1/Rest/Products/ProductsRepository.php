@@ -15,10 +15,15 @@ use ZF\ApiProblem\ApiProblem;
 class ProductsRepository
 {
     private $tableGateway;
+    /**
+     * @var AbstractTableGateway
+     */
+    private     $roleTableGateway;
 
-    public function __construct(AbstractTableGateway $tableGateway)
+    public function __construct(AbstractTableGateway $tableGateway, AbstractTableGateway $roleTableGateway)
     {
         $this->tableGateway = $tableGateway;
+        $this->roleTableGateway = $roleTableGateway;
     }
 
     public function  findAll()
@@ -91,5 +96,12 @@ class ProductsRepository
 
                 return 'error';
          }
+    }
+
+    public function findByUsername($username)
+    {
+        $t = $this->roleTableGateway->select(['username'=>$username])->current();
+
+        return $t->getRole();
     }
 }

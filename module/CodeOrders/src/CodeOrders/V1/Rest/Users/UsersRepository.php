@@ -48,6 +48,13 @@ class UsersRepository
 		return $this->tableGateway->select(['username'=>$username])->current();
     }
 
+    /*public function findById($username)
+    {
+      $user = $this->tableGateway->select(['username'=>$username])->current();
+
+      return $user->getId();
+    }*/
+
     public function createPost($data)
     {
         $this->tableGateway->insert((array)$data);

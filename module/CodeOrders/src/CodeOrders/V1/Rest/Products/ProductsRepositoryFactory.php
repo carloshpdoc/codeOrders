@@ -33,8 +33,10 @@ class ProductsRepositoryFactory implements FactoryInterface
 
         $tableGateway = new TableGateway('products', $dbAdapter, null, $hydrator);
 
-        $productsRepository = new ProductsRepository($tableGateway);
+     //   $productsRepository = new ProductsRepository($tableGateway);
 
-        return $productsRepository;
+        $roleTableGateway = $serviceLocator->get('CodeOrders\V1\Rest\Orders\RoleTableGateway');
+
+        return new ProductsRepository($tableGateway, $roleTableGateway);
     }
 }
