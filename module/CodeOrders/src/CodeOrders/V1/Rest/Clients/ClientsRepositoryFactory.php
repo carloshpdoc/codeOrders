@@ -32,8 +32,6 @@ class ClientsRepositoryFactory implements FactoryInterface
 
         $tableGateway = new TableGateway('clients', $dbAdapter, null, $hydrator);
 
-        //$clientsRepository = new ClientsRepository($tableGateway);
-
         $roleTableGateway = $serviceLocator->get('CodeOrders\V1\Rest\Clients\RoleClientsTableGateway');
 
         return new ClientsRepository($tableGateway, $roleTableGateway);
