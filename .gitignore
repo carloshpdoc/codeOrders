@@ -43,7 +43,7 @@ Thumbs.db
 # Project Code-Curso #
 ######################
 vendor/
-ionic/
+#ionic/
 #puphpet/
 #data/
 #config/
