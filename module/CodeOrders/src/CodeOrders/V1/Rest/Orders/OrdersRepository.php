@@ -128,4 +128,17 @@ class OrdersRepository
             return false;
         }
     }
+
+    public function deleteData($id)
+    {
+       /* $result = $this->find($id);
+        if(!$result)
+        {
+            return new ApiProblem(404,'Registro não encontrado');
+        }*/
+
+        $this->tableGateway->delete(['id'=>(int)$id]);
+        return true;
+
+    }
 }
