@@ -22,11 +22,9 @@ class OrderItemHydratorStrategy implements StrategyInterface
 	
 	 public function extract($items)
 	 {
-	 	$data[]='';
-	 	
 	 	foreach ($items as $item)
 	 	{
-	 		$data[]= $this->hydrator->extract($items);
+	 		$data[]= $this->hydrator->extract($item);
 	 		
 	 		return $data;
 	 	}
