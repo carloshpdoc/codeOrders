@@ -4,6 +4,7 @@ namespace CodeOrders\V1\Rest\Orders;
 class OrdersEntity
 {
     protected $id;
+    protected $client;
     protected $client_id;
     protected $user_id;
     protected $ptype_id;
@@ -160,6 +161,22 @@ class OrdersEntity
     {
         $this->created_at = $created_at;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
     }
 
 }

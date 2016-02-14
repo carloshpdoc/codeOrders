@@ -32,8 +32,7 @@ class ClientsRepository
 
     public function  findAll()
     {
-        $tableGateway = $this->tableGateway;
-        $paginatorAdapter = new DbTableGateway($tableGateway);
+        $paginatorAdapter = new DbTableGateway($this->tableGateway);
 
         return new ClientsCollection($paginatorAdapter);
     }

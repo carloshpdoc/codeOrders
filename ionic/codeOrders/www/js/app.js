@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers','angular-oauth2'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope, OAuth, $state ) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,6 +21,19 @@ angular.module('starter', ['ionic', 'starter.controllers','angular-oauth2'])
       StatusBar.styleDefault();
     }
   });
+
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams, options){
+          if(toState.name !='login'){
+              if(!OAuth.isAuthenticated()){
+                  event.preventDefault();
+                  $state.go('login');
+              }
+          }
+            /*event.preventDefault();*/
+            // transitionTo() promise will be rejected with
+            // a 'transition prevented' error
+        })
 })
 
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider, OAuthProvider, OAuthTokenProvider){
@@ -59,12 +72,31 @@ angular.module('starter', ['ionic', 'starter.controllers','angular-oauth2'])
           url:'/create',
           views:{
               'create-tab':{
-                  templateUrl:'templates/create.html'
+                  templateUrl:'templates/create.html',
+                  controller:'OrdersNewCtrl'
               }
           }
       })
-
+      .state('tabs.show',{
+          url:'/orders/:id',
+          views:{
+              'orders-tab':{
+                  templateUrl:'templates/order-show.html',
+                  controller:'OrderShowCtrl'
+              }
+          }
+      })
+      .state('tabs.logout',{
+          url:'/logout',
+          views:{
+              'logout-tab':{
+                  templateUrl:'templates/logout.html',
+                  controller:'LogoutCtrl'
+              }
+          }
+      })
       .state('login',{
+          cache:false,
           url:'/login',
           templateUrl:'templates/login.html',
           controller:'LoginCtrl'

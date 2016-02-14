@@ -19,7 +19,7 @@
 
 <ion-list show-delete="data.showDelete">
 
-    <ion-item ng-repeat="order in orders | filter: search">
+    <ion-item ng-repeat="order in orders | filter: search" ng-click="show(order)">
         #{{order.id}} - total: {{order.total}} - data: {{order.created_at}}
         <ion-delete-button class="ion-minus-circled" ng-click="onOrderDelete({{order.id}});"></ion-delete-button>
     </ion-item>

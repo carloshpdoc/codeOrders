@@ -6,7 +6,7 @@ class ProductsEntity
     protected $id;
     protected $name;
     protected $description;
-    protected $price;
+    public $price;
 
     /**
      * @return mixed

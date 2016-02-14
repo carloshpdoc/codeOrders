@@ -26,11 +26,7 @@ class ClientsRepositoryFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $dbAdapter = $serviceLocator->get('DbAdapter');
-
-        $hydrator = new HydratingResultSet(new ClassMethods(), new ClientsEntity());
-
-        $tableGateway = new TableGateway('clients', $dbAdapter, null, $hydrator);
+        $tableGateway = $serviceLocator->get('CodeOrders\V1\Rest\Clients\ClientsTableGateway');
 
         $roleTableGateway = $serviceLocator->get('CodeOrders\V1\Rest\Clients\RoleClientsTableGateway');
 
