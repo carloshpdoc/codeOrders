@@ -154,19 +154,51 @@ angular.module('starter.controllers',[])
         }
     ])
 
-    .controller('LogoutCtrl', ['$scope','OAuthToken','$state','$ionicHistory',
-    function($scope, OAuthToken, $state,$ionicHistory ){
+    .controller('LogoutCtrl', ['$scope','logout','$state',
+       function($scope,logout,$state ){
 
-       $scope.logout = function(){
-           OAuthToken.removeToken();
-           $ionicHistory.clearCache();
-           $ionicHistory.clearHistory();
-           $ionicHistory.nextViewOptions({
-               disableBack:true,
-               historyRoot: true
-           });
-           $state.go('login');
-
+            $scope.logout = function(){
+                logout.logout();
+               $state.go('login');
+            };
        }
-    }
-]);
+    ])
+
+    .controller('RefreshModalCtrl', [
+        '$rootScope','$scope','OAuth','authService','$timeout','$state','OAuthToken','logout',
+        function($rootScope,$scope,OAuth,authService,$timeout, $state, OAuthToken, logout){
+
+            function destroyModal(){
+              if($rootScope.modal){
+                  $rootScope.modal.hide();
+                  $rootScope.modal = false;
+              }
+            }
+
+          $scope.$on('event:auth-loginConfirmed',function(){
+             destroyModal();
+          });
+
+          $scope.$on('event:auth-loginCancelled',function(){
+               destroyModal();
+              logout.logout();
+          });
+
+          $scope.$on('$stateChangeStart',
+                function(event,toState, toParams, fromState, fromParams){
+                    if($rootScope.modal){
+                        authService.loginCancelled();
+                        event.preventDefault();
+                        $state.go('login');
+                   }
+          });
+
+          OAuth.getRefreshToken().then(function(){
+            $timeout(function(){
+                authService.loginConfirmed();
+            },10000)
+          },function(){
+              authService.loginCancelled();
+              $state.go('login');
+        });
+    }]);
