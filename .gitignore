@@ -43,6 +43,7 @@ Thumbs.db
 # Project Code-Curso #
 ######################
 vendor/
+banco/
 #ionic/
 #puphpet/
 #data/
