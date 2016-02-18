@@ -36,11 +36,10 @@ class OrdersResource extends AbstractResourceListener
             return new ApiProblem(403,'Access only for salesman. You role is : '.$userRole);
         }
 
-
         $result = $this->services->insert($data);
 
         if($result=="error"){
-            return new ApiProblem(405, 'Error processing order');
+            return new ApiProblem(500, 'Error processing order');
         }
 
         return $result;
@@ -54,7 +53,8 @@ class OrdersResource extends AbstractResourceListener
      */
     public function delete($id)
     {
-        return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
+        return $this ->repository->deleteData($id);
+        //return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
     }
 
     /**
@@ -81,8 +81,8 @@ class OrdersResource extends AbstractResourceListener
         if($userRole!="salesman"){
             return new ApiProblem(403,'Access only for salesman. You role is : '.$userRole);
         }
-
-        $r = $this->repository->find($id,$this->getIdentity()->getRoleId());
+//,$this->getIdentity()->getRoleId()
+        $r = $this->repository->find($id);
 
         if($r==false){
             return new ApiProblem(403,'You can only see their own requests');
@@ -139,6 +139,7 @@ class OrdersResource extends AbstractResourceListener
      */
     public function update($id, $data)
     {
-        return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
+        return $this->repository->updateOrder($data, $id);
+       // return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
 }

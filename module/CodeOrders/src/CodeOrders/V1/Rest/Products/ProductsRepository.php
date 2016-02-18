@@ -38,8 +38,12 @@ class ProductsRepository
     public function find($id)
     {
         $resultSet = $this->tableGateway->select(['id'=>(int)$id]);
+        if($resultSet->count()==1)
+        {
+            return $resultSet->current();
+        }
 
-        return $resultSet->current();
+        return false;
     }
 
     public function createData(array $data)
