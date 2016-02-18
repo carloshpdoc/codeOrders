@@ -31,7 +31,8 @@
         "zfcampus/zf-apigility": "~1.1",
         "zfcampus/zf-apigility-documentation": "^1.0.5",
         "zfcampus/zf-development-mode": "~2.0",
-        "zfr/zfr-cors": "1.*"
+        "zfr/zfr-cors": "1.*",
+        "zfcampus/zf-apigility-documentation-swagger": "~1.0-dev"
     },
     "require-dev": {
         "zendframework/zftool": "dev-master",

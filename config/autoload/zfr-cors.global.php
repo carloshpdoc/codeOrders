@@ -10,7 +10,7 @@ return array(
          /**
           * Set the list of allowed origins domain with protocol.
           */
-          'allowed_origins' => array('*'),
+          'allowed_origins' => array('http://localhost:8100','http://192.168.100.8:8888','file://mobile'),
 
          /**
           * Set the list of HTTP verbs.

@@ -58,25 +58,26 @@ angular.module('starter', [
 })
 
 .config(function($stateProvider, $urlRouterProvider,
-                 $ionicConfigProvider, OAuthProvider, OAuthTokenProvider, $httpProvider){
+                 $ionicConfigProvider, OAuthProvider, OAuthTokenProvider, $httpProvider, $provide){
 
     $httpProvider.interceptors.push('oauthFixInterceptor');
     $httpProvider.interceptors.splice(0,1);
 
     OAuthProvider.configure({
-        baseUrl: 'http://localhost:8888',
+        baseUrl: 'http://192.168.100.8:8888',
         clientId: 'testeClient',
         clientSecret: '123456',
         grantPath: '/oauth',
         revokePath: '/oauth'
     });
 
-    OAuthTokenProvider.configure({
+    // no need more
+   /* OAuthTokenProvider.configure({
         name: 'token',
         options: {
             secure: false
         }
-    });
+    });*/
 
   $stateProvider
       .state('tabs',{
@@ -128,5 +129,34 @@ angular.module('starter', [
       })
 
     $urlRouterProvider.otherwise('/login');
+    $provide.decorator('OAuthToken', ['$delegate','$localStorage', function($delegate, $localSotrage){
+        Object.defineProperties($delegate,{
+            setToken: {
+                value:function(data){
+                    return $localSotrage.setObject('token',data);
+                },
+                enumerable:true,
+                configurable:true,
+                writable:true
 
+            },
+            getToken: {
+                value:function(){
+                    return $localSotrage.getObject('token');
+                },
+                enumerable:true,
+                configurable:true,
+                writable:true
+            },
+            removeToken:{
+                value:function(){
+                    $localSotrage.setObject('token',null);
+                },
+                enumerable:true,
+                configurable:true,
+                writable:true
+            }
+        });
+        return $delegate;
+    }]);
 })

@@ -4,16 +4,23 @@
 
 angular.module('starter.controllers',[])
 
-    .controller('LoginCtrl',['$scope','$http','$state','OAuth','OAuthToken',
-        function($scope, $http,$state,OAuth,OAuthToken) {
-
+    .controller('LoginCtrl',['$scope','$http','$state','OAuth','OAuthToken','$localStorage',
+        function($scope, $http,$state,OAuth,OAuthToken,$localStorage) {
+         /* console.log($localStorage.setObject('oauth',{
+              access_token:'asdiasodiasdhasiduohasodi',
+              refresh_token:'trooasodqwpejoqdw'
+          }));*/
+            /*console.log($localStorage.getObject('oauth'));
+            console.log($localStorage.getObject('label_2','outroovalor'));*/
             $scope.login = function (data) {
 
                 OAuth.getAccessToken(data).then(function () {
-                   $state.go('tabs.orders');
 
+                   $state.go('tabs.orders');
+                   // console.log(OAuthToken.getToken());
                 }, function (data) {
-                    $scope.error_login = "Usuário ou senha inválidos";
+                    $scope.error_login = data;
+                    //$scope.error_login = "Usuário ou senha inválidos";
                 });
             }
         }
@@ -23,7 +30,7 @@ angular.module('starter.controllers',[])
 
         $scope.getOrders=function(){
 
-            $http.get('http://localhost:8888/orders').then(
+            $http.get('http://192.168.100.8:8888/orders').then(
                 function(data){
                     $scope.orders = data.data._embedded.orders;
                     //console.log(data.orders);
@@ -40,7 +47,7 @@ angular.module('starter.controllers',[])
         };
 
         $scope.onOrderDelete =function(data){
-            $http.delete('http://localhost:8888/orders/'+data).then(
+            $http.delete('http://192.168.100.8:8888/orders/'+data).then(
                 function(data) {
                     $scope.getOrders();
                 })
@@ -53,7 +60,7 @@ angular.module('starter.controllers',[])
         function($scope, $http, $stateParams){
 
             $scope.getOrder = function(){
-                $http.get('http://localhost:8888/orders/' + $stateParams.id).then(
+                $http.get('http://192.168.100.8:8888/orders/' + $stateParams.id).then(
                     function(data){
                         $scope.order =data.data;
                     }
@@ -80,7 +87,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getClients =function(){
-                $http.get('http://localhost:8888/clients').then(
+                $http.get('http://192.168.100.8:8888/clients').then(
                     function(data){
                         $scope.clients= data.data._embedded.clients;
                     }
@@ -88,7 +95,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getPtypes =function(){
-                $http.get('http://localhost:8888/ptypes').then(
+                $http.get('http://192.168.100.8:8888/ptypes').then(
                     function(data){
                         $scope.ptypes= data.data._embedded.ptypes;
                     }
@@ -96,7 +103,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getProducts=function(){
-                $http.get('http://localhost:8888/products').then(
+                $http.get('http://192.168.100.8:8888/products').then(
                     function(data){
                         $scope.products= data.data._embedded.products;
                     }
@@ -139,7 +146,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.save = function (){
-                $http.post('http://localhost:8888/orders', $scope.order).then(
+                $http.post('http://192.168.100.8:8888/orders', $scope.order).then(
                     function (data) {
                         $scope.resetOrder();
                         $state.go('tabs.orders', '',  {reload:true});

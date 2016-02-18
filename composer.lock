@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67c41b050763cebb9f3ff4b31569644c",
-    "content-hash": "e41e24f1e0c7e04926a0b1afe2565d32",
+    "hash": "e100c89f1cc54e91b77c095a47cbd584",
+    "content-hash": "32ca649f0e8348b69709065dd00f4be2",
     "packages": [
         {
             "name": "bshaffer/oauth2-server-php",
@@ -4258,6 +4258,68 @@
             "time": "2015-07-15 15:41:59"
         },
         {
+            "name": "zfcampus/zf-apigility-documentation-swagger",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zfcampus/zf-apigility-documentation-swagger.git",
+                "reference": "5dab6e8a24e171f9ff2b1ce415d0153b8f150967"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zfcampus/zf-apigility-documentation-swagger/zipball/5dab6e8a24e171f9ff2b1ce415d0153b8f150967",
+                "reference": "5dab6e8a24e171f9ff2b1ce415d0153b8f150967",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "zendframework/zend-eventmanager": "~2.3",
+                "zendframework/zend-mvc": "~2.3",
+                "zendframework/zend-servicemanager": "~2.3",
+                "zendframework/zend-view": "~2.3",
+                "zfcampus/zf-api-problem": "~1.0",
+                "zfcampus/zf-apigility-documentation": "~1.0",
+                "zfcampus/zf-content-negotiation": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.7",
+                "squizlabs/php_codesniffer": "^2.3.1",
+                "zendframework/zend-http": "~2.3",
+                "zendframework/zend-loader": "~2.3",
+                "zendframework/zend-stdlib": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev",
+                    "dev-develop": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ZF\\Apigility\\Documentation\\Swagger\\": "src/"
+                },
+                "classmap": [
+                    "Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Apigility API Swagger documentation module",
+            "homepage": "http://apigility.org/",
+            "keywords": [
+                "apigility",
+                "documentation",
+                "module",
+                "swagger",
+                "zend",
+                "zf2"
+            ],
+            "time": "2015-07-15 15:44:57"
+        },
+        {
             "name": "zfcampus/zf-apigility-provider",
             "version": "1.1.0",
             "source": {
@@ -4931,6 +4993,65 @@
                 "zf2"
             ],
             "time": "2015-07-15 17:17:01"
+        },
+        {
+            "name": "zfr/zfr-cors",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf-fr/zfr-cors.git",
+                "reference": "37ddd308ae18536c2e9ba37d1be3338e1bf8cf6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf-fr/zfr-cors/zipball/37ddd308ae18536c2e9ba37d1be3338e1bf8cf6b",
+                "reference": "37ddd308ae18536c2e9ba37d1be3338e1bf8cf6b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "~2.2",
+                "zendframework/zend-http": "~2.2",
+                "zendframework/zend-mvc": "~2.2",
+                "zendframework/zend-servicemanager": "~2.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "1.4.*",
+                "zendframework/zendframework": "~2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ZfrCors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florent Blaison",
+                    "email": "florent.blaison@gmail.com"
+                },
+                {
+                    "name": "Michaël Gallego",
+                    "email": "mic.gallego@gmail.com",
+                    "homepage": "http://www.michaelgallego.fr/"
+                }
+            ],
+            "description": "Zend Framework 2 module that let you deal with CORS requests",
+            "homepage": "https://github.com/zf-fr/zfr-cors",
+            "keywords": [
+                "Zend Framework",
+                "cors",
+                "cross origin sharing resource",
+                "rest",
+                "zf2"
+            ],
+            "time": "2015-12-03 15:11:54"
         }
     ],
     "packages-dev": [
@@ -5482,7 +5603,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zfcampus/zf-apigility-admin-ui/zipball/94aea26214c4b065fc164e5f2bb39fe1f40ae33c",
+                "url": "https://api.github.com/repos/zfcampus/zf-apigility-admin-ui/zipball/4d86b942118ce8cd34403aebb99f6357c4b5989b",
                 "reference": "94aea26214c4b065fc164e5f2bb39fe1f40ae33c",
                 "shasum": ""
             },
@@ -5629,6 +5750,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "zfcampus/zf-apigility-documentation-swagger": 20,
         "zendframework/zftool": 20,
         "zendframework/zend-developer-tools": 20,
         "zfcampus/zf-apigility-admin-ui": 20
