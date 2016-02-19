@@ -70,8 +70,8 @@ angular.module('starter.controllers',[])
             $scope.getOrder();
         }
      ])
-    .controller('OrdersNewCtrl',['$scope','$http','$state',
-        function($scope,$http,$state){
+    .controller('OrdersNewCtrl',['$scope','$http','$state','$window',
+        function($scope,$http,$state,$window){
 
             $scope.clients=[];
             $scope.ptypes =[];
@@ -149,7 +149,8 @@ angular.module('starter.controllers',[])
                 $http.post('http://192.168.100.8:8888/orders', $scope.order).then(
                     function (data) {
                         $scope.resetOrder();
-                        $state.go('tabs.orders', '',  {reload:true});
+                        $state.go('tabs.orders');
+                        $window.location.reload(true);
                     }
                 )
             };
