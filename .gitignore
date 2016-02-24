@@ -56,4 +56,4 @@ banco/
 #docker-compose.yml
 #.dockerignore
 #CONTRIBUINTG.md
-composer.lock
+#composer.lock
