@@ -549,7 +549,7 @@ return array(
                     'DELETE' => false,
                 ),
                 'entity' => array(
-                    'GET' => false,
+                    'GET' => true,
                     'POST' => false,
                     'PUT' => true,
                     'PATCH' => true,
@@ -573,6 +573,38 @@ return array(
                 ),
             ),
             'CodeOrders\\V1\\Rest\\Clients\\Controller' => array(
+                'collection' => array(
+                    'GET' => true,
+                    'POST' => true,
+                    'PUT' => false,
+                    'PATCH' => false,
+                    'DELETE' => false,
+                ),
+                'entity' => array(
+                    'GET' => true,
+                    'POST' => false,
+                    'PUT' => true,
+                    'PATCH' => true,
+                    'DELETE' => true,
+                ),
+            ),
+            'CodeOrders\\V1\\Rest\\Ptypes\\Controller' => array(
+                'collection' => array(
+                    'GET' => true,
+                    'POST' => true,
+                    'PUT' => false,
+                    'PATCH' => false,
+                    'DELETE' => false,
+                ),
+                'entity' => array(
+                    'GET' => false,
+                    'POST' => false,
+                    'PUT' => true,
+                    'PATCH' => true,
+                    'DELETE' => true,
+                ),
+            ),
+            'CodeOrders\\V1\\Rest\\Orders\\Controller' => array(
                 'collection' => array(
                     'GET' => true,
                     'POST' => true,

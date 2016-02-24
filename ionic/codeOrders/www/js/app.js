@@ -47,7 +47,7 @@ angular.module('starter', [
                     animation: 'slide-in-up'
                 }).then(function (modal) {
                     $rootScope.modal = modal;
-                    $rootScope.modal = modal.show();
+                    $rootScope.modal.show();
                 });
             }
             return;
@@ -64,7 +64,7 @@ angular.module('starter', [
     $httpProvider.interceptors.splice(0,1);
 
     OAuthProvider.configure({
-        baseUrl: 'http://192.168.100.8:8888',
+        baseUrl: 'http://192.168.100.9:8888',
         clientId: 'testeClient',
         clientSecret: '123456',
         grantPath: '/oauth',

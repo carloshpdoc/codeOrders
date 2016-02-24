@@ -30,7 +30,7 @@ angular.module('starter.controllers',[])
 
         $scope.getOrders=function(){
 
-            $http.get('http://192.168.100.8:8888/orders').then(
+            $http.get('http://192.168.100.9:8888/orders').then(
                 function(data){
                     $scope.orders = data.data._embedded.orders;
                     //console.log(data.orders);
@@ -47,7 +47,7 @@ angular.module('starter.controllers',[])
         };
 
         $scope.onOrderDelete =function(data){
-            $http.delete('http://192.168.100.8:8888/orders/'+data).then(
+            $http.delete('http://192.168.100.9:8888/orders/'+data).then(
                 function(data) {
                     $scope.getOrders();
                 })
@@ -60,7 +60,7 @@ angular.module('starter.controllers',[])
         function($scope, $http, $stateParams){
 
             $scope.getOrder = function(){
-                $http.get('http://192.168.100.8:8888/orders/' + $stateParams.id).then(
+                $http.get('http://192.168.100.9:8888/orders/' + $stateParams.id).then(
                     function(data){
                         $scope.order =data.data;
                     }
@@ -87,7 +87,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getClients =function(){
-                $http.get('http://192.168.100.8:8888/clients').then(
+                $http.get('http://192.168.100.9:8888/clients').then(
                     function(data){
                         $scope.clients= data.data._embedded.clients;
                     }
@@ -95,7 +95,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getPtypes =function(){
-                $http.get('http://192.168.100.8:8888/ptypes').then(
+                $http.get('http://192.168.100.9:8888/ptypes').then(
                     function(data){
                         $scope.ptypes= data.data._embedded.ptypes;
                     }
@@ -103,7 +103,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.getProducts=function(){
-                $http.get('http://192.168.100.8:8888/products').then(
+                $http.get('http://192.168.100.9:8888/products').then(
                     function(data){
                         $scope.products= data.data._embedded.products;
                     }
@@ -146,7 +146,7 @@ angular.module('starter.controllers',[])
             };
 
             $scope.save = function (){
-                $http.post('http://192.168.100.8:8888/orders', $scope.order).then(
+                $http.post('http://192.168.100.9:8888/orders', $scope.order).then(
                     function (data) {
                         $scope.resetOrder();
                         $state.go('tabs.orders');
